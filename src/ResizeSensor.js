@@ -114,19 +114,20 @@
                     el.addEventListener(name, cb);
                 }
             };
+            
+            var check = function() {
+              if (element.offsetWidth !== lastWidth || element.offsetHeight !== lastHeight) {
+                  changed();
+              }
+              reset();
+            }
 
             addEvent(expand, 'scroll', function() {
-                if (element.offsetWidth > lastWidth || element.offsetHeight > lastHeight) {
-                    changed();
-                }
-                reset();
+                check();
             });
 
             addEvent(shrink, 'scroll',function() {
-                if (element.offsetWidth < lastWidth || element.offsetHeight < lastHeight) {
-                    changed();
-                }
-                reset();
+                check();
             });
         }
 
